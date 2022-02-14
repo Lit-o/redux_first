@@ -1,6 +1,8 @@
 // import {connect} from 'react-redux'
-import {inc, dec, rnd} from '../actions'
+// import {inc, dec, rnd} from '../actions'
+import * as actions from '../actions'
 import { useSelector, useDispatch } from 'react-redux' 
+import {bindActionCreators} from 'redux'
 
 
 const Counter = () => {    
@@ -27,6 +29,8 @@ const Counter = () => {
     // useDispatch() аналогичен mapDispatchToProps, то есть связывает нашу переменную с dispatch из store
   
     const dispatch = useDispatch();
+
+    const {inc, dec, rnd} = bindActionCreators(actions, dispatch)
       // Если я собираюсь действие передавать ниже по иерархии то нужно использовать useCallback
     //   const someDispatchForChild = useCallback(() => dispatch({type: 'someAction'}), [dispatch])
     // <MyChildComponent someDispatchForChild={someDispatchForChild} />
@@ -34,9 +38,12 @@ const Counter = () => {
     return (
         <div style={{width:200, margin: '40px auto', border: '1px solid gold', textAlign:'center', padding: 20,}}>
             <h1>{counter}</h1>
-            <button onClick={() => {dispatch(dec())}}>DEC</button>
+            <button onClick={dec}>DEC</button>
+            <button onClick={inc}>INC</button>
+            <button onClick={rnd}>RND</button>
+            {/* <button onClick={() => {dispatch(dec())}}>DEC</button>
             <button onClick={() => {dispatch(inc())}}>INC</button>
-            <button onClick={() => {dispatch(rnd())}}>RND</button>
+            <button onClick={() => {dispatch(rnd())}}>RND</button> */}
         </div>
     )
 }
