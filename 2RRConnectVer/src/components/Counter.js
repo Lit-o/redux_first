@@ -38,4 +38,5 @@ const mapStateToProps = (state) => {
 // Функция connect в секции mapDispatchToProps может принять не только функцию 
 // mapDispatchToProps, но и объект с функциями actionCreator'ов 
 // и сама обернуть их в dispatch - example: dispatch(actions.inc)
+// у connect есть еще 3ее и 4ое необязательные свойства под оптимизацию
 export default connect(mapStateToProps, actions)(Counter)
